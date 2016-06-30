@@ -61,11 +61,7 @@ public class WaveLayout extends ViewGroup {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         float miniCircleRadius = 0;
-        //设置波纹位置
-//        View waveView = findViewById(R.id.wave_view);
-//        if (waveView != null && waveView instanceof WaveView) {
-//        }
-
+        //设置水波纹位置
         waveView.layout(0, 0, getMeasuredWidth(), getMeasuredHeight());
         miniCircleRadius = waveView.getMiniRadius();
 
@@ -96,6 +92,7 @@ public class WaveLayout extends ViewGroup {
         }
     }
 
+    //增加CircleVie
     public void addCircleView(WaveCircleView waveCircleView){
         if (waveView == null || !waveView.isStart()){
             return;

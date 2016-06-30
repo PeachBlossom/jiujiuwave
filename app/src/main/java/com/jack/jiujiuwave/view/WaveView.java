@@ -183,9 +183,11 @@ public class WaveView extends View {
         Iterator<ValueAnimator> iterator = mAnimatorList.iterator();
         while (iterator.hasNext()){
             ValueAnimator valueAnimator = iterator.next();
-            Log.e("AnimatedValue",(float)valueAnimator.getAnimatedValue() + "mMaxRadius:" + mMaxRadius);
+//            Log.e("AnimatedValue",(float)valueAnimator.getAnimatedValue() + "mMaxRadius:" + mMaxRadius);
             if (!valueAnimator.getAnimatedValue().equals(mMaxRadius)){
+                //设置透明度
                 mWavePaint.setAlpha(getAlpha((Float) valueAnimator.getAnimatedValue()));
+                //画水波纹
                 canvas.drawCircle(getMeasuredWidth() / 2,getMeasuredHeight() / 2, (Float) valueAnimator.getAnimatedValue(),mWavePaint);
             }else{
                 valueAnimator.cancel();
@@ -193,6 +195,7 @@ public class WaveView extends View {
             }
         }
 
+        //绘制中间图标
         drawCenterBitmap(canvas);
         if (mAnimatorList.size() > 0){
             postInvalidateDelayed(10);
@@ -207,7 +210,7 @@ public class WaveView extends View {
         canvas.drawBitmap(mCenterCircleBitmap,null,mCenterBitmapArea,mCenterBitmapPaint);
     }
 
-    //根据原图和变长绘制圆形图片
+    //根据原图和边长绘制圆形图片
     private Bitmap createCircleImage(Bitmap source, int min)
     {
         final Paint paint = new Paint();
@@ -230,7 +233,7 @@ public class WaveView extends View {
         if (mMaxRadius > 0){
             alpha = (int)((1 - (mRadius - mMiniRadius)/(mMaxRadius - mMiniRadius)) * 255);
         }
-        Log.e("alpha",alpha + "");
+//        Log.e("alpha",alpha + "");
         return alpha;
     }
 
